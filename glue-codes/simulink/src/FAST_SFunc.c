@@ -27,7 +27,7 @@
  * its associated macro definitions.
  */
 #include "simstruc.h"
-#include "mex.h"     // for mexPutVariable
+//#include "mex.h"     // for mexPutVariable
 #include "matrix.h"  // for mxCreateDoubleScalar
 #include "FAST_Library.h"
 #include <math.h>
@@ -211,7 +211,7 @@ static void mdlInitializeSizes(SimStruct *S)
 
        // set DT in the Matlab workspace (necessary for Simulink block solver options)
        pm = mxCreateDoubleScalar(dt);
-       ErrStat = mexPutVariable("base", "DT", pm);
+       ErrStat = 0; //mexPutVariable("base", "DT", pm);
        mxDestroyArray(pm);
        if (ErrStat != 0){
           ErrStat = ErrID_Fatal;
@@ -238,7 +238,7 @@ static void mdlInitializeSizes(SimStruct *S)
           mxSetCell(pm, indx, chrAry);
           //mxDestroyArray(chrAry);
        }
-       ErrStat = mexPutVariable("base", "OutList", pm);
+       ErrStat = 0; //mexPutVariable("base", "OutList", pm);
        mxDestroyArray(pm);
 
        if (ErrStat != 0){
